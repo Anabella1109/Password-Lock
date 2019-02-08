@@ -14,4 +14,18 @@ class TestUser(unittest.TestCase):
         '''
         Set up method to run before each test cases.
         '''
-        self.new_user = User("James Kaki","Muriuki","james@ms.com","1234yruty") # create contact object
+        self.new_user = User("James Kaki","Muriuki","james@ms.com","1234yruty") # create user object
+
+  def test_init(self):
+        '''
+        test_init test case to test if the object is initialized properly
+        '''
+
+        self.assertEqual(self.new_user.names,"James Kaki")
+        self.assertEqual(self.new_user.username,"Muriuki")
+        self.assertEqual(self.new_user.email,"james@ms.com")
+        self.assertEqual(self.new_user.password,"1234yruty")
+
+
+if __name__ == '__main__':
+    unittest.main()
