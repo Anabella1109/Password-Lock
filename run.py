@@ -178,7 +178,7 @@ def main():
                     continue
                  else:
                     print('\n')
-                    print("You don't have any credentials saved yet")
+                    print("You don't have any credentials saved yet"
                     print('\n')
                     continue
              elif short_code2=='del':
