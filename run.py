@@ -81,6 +81,8 @@ def pw_generator(size,chars=string.ascii_letters+ string.digits):
 def main():
   print("Welcome to password locker")
 
+  print("You have to login after every task")
+
   while True:
     print("\n")
     print("Use the following short codes:ca -Create account ,li -Login , dl -delete user account ,ex -exit")
