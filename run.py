@@ -83,7 +83,7 @@ def main():
 
   while True:
     print("\n")
-    print("Use the following short codes:ca -Create account ,li -Login , dl -delete user account")
+    print("Use the following short codes:ca -Create account ,li -Login , dl -delete user account ,ex -exit")
     short_code1=input().lower()
     if short_code1=='ca':
        print('New account')
@@ -106,7 +106,6 @@ def main():
        print(f"New account {username} created")
        print('\n')
     elif short_code1=='li':
-     while True:
        print("Enter your username")
        login_username=input()
 
@@ -118,7 +117,7 @@ def main():
            if search_user.username==login_username and search_user.password==login_password:
              print("Login successful")
              print('\n')
-             print("Use the following short codes to navigate your account: ac -add credentials ,fc -find credentials , dc -display credentials,del -delete credentials")
+             print("Use the following short codes to navigate your account: ac -add credentials ,fc -find credentials , dc -display credentials,del -delete credentials ,ba -exit")
              short_code2=input().lower()
              if short_code2=='ac':
                 print("New credentials")
@@ -129,8 +128,9 @@ def main():
 
                 print("Enter username")
                 username1=input()
-
+                
                 print("Use cop to create your own password ,gpg to get password generated for you")
+                
                 short_code3=input().lower()
                 if short_code3=='cop':
                   password1=input()
@@ -138,6 +138,7 @@ def main():
                   print("Enter integer size you want password to be(no letters)")
                   size=int(input())
                   password1=pw_generator(size)
+                  print(f'Your new password is {password1}')
 
                 else:
                   print("Please use the provided short codes")
@@ -146,6 +147,7 @@ def main():
                 print('\n')
                 print(f"{accountname1.capitalize()} credentials saved")
                 print('\n')
+                continue
              elif short_code2=='fc':
                 print("Enter account name/application name to find")
                 accountname=input()
@@ -159,9 +161,10 @@ def main():
 
                   print(f"Username ...........{account.username}")
                   print(f"Password..........{account.password}")
+                  continue
                 else:
                   print("That account does not exist")
-
+                  continue
              elif short_code2=='dc':
                  if display():
                     print("Here's a list of all your credentials")
@@ -170,11 +173,12 @@ def main():
                     for credential in display():
                          print(f"{credential.account_name.capitalize()} {credential.username} {credential.password}")
                          print('\n')
-
+                    continue
                  else:
                     print('\n')
                     print("You don't have any credentials saved yet")
                     print('\n')
+                    continue
              elif short_code2=='del':
                  print("Enter account name you want to delete") 
                  accountname=input()
@@ -184,17 +188,22 @@ def main():
                       delete_creds(account)
                       print('\n')
                       print(f"{account.account_name}'s credentials are deleted")
-
+                      continue
                  else:
                    print("\n")
                    print("Account name entered doesn't match any credentials")
                    print('\n')
-              
+                   continue
+             elif short_code2=='ba':
+               print("Thank you for using password locker")
+               break
 
            else :
              print("Wrong username or password")
+             continue
        else:
            print("Account doesn't exist,You have to create an account first")
+           continue
     elif short_code1=='dl':
         print("Enter username of user account you want to delete")
         username_to_delete=input()
@@ -205,13 +214,16 @@ def main():
            print('\n')
 
            print(f"{username_to_delete}    is deleted")
+    
 
            
         else:
               print('\n')
               print("That user does not exist")
               print('\n')
-          
+    elif short_code1=='ex':
+        print("Thank you for using password locker")
+        break      
 
       
 

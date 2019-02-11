@@ -10,16 +10,30 @@ Password locker is an application where a user can create an account using usern
 
 ## Setup/Installation requirements
 
-### To access this application
+### Prerequisites
+* Python3.6
+* pip
 
-* First you need to have Python installed
-* Also you need to install Visual Studio code or atom(or any code editor of your choice)
-* Open you terminal
-* Clone this project using:
-  git clone https://github.com/Anabella1109/Password-Lock.git
-* Open the project in your code editor(optional)
-* Open your project folder in your terminal
-* Type chmod
+### Cloning
+* In your terminal <br>
+
+     $ git clone https://github.com/Anabella1109/Password-Lock.git<br>
+    $ cd Password-Lock
+
+### Running
+ * In your terminal<br>
+
+     $ chmod +x run.py<br>
+     $ ./run.py
+
+### Test
+* To run tests
+  * In your terminal<br>
+  $ python3.6 test_passwordlock.py<br>
+   $ python3.6 test_passwordlock1.py
+
+
+
 
 
 ##BDD
@@ -42,7 +56,7 @@ There are no known bugs yet.
 
 ## Technologies used
 
-* Python
+* Python3.6
 
 ## Support and contact details
 
