@@ -105,6 +105,7 @@ def main():
        print('\n')
        print(f"New account {username} created")
        print('\n')
+       continue
     elif short_code1=='li':
        print("Enter your username")
        login_username=input()
@@ -172,7 +173,7 @@ def main():
                     print('\n')
 
                     for credential in display():
-                         print(f"{credential.account_name.capitalize()} {credential.username} {credential.password}")
+                         print(f"{credential.account_name.capitalize()} Username:{credential.username} Password:{credential.password}")
                          print('\n')
                     continue
                  else:
@@ -198,6 +199,8 @@ def main():
              elif short_code2=='ba':
                print("Thank you for using password locker")
                break
+             else:
+               print("Please use provided short codes")
 
            else :
              print("Wrong username or password")
