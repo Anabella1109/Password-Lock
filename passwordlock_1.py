@@ -17,3 +17,19 @@ class Credentials:
         self.account_name:account_name
         self.username:username
         self.password:password
+
+
+     def save_credentials(self):
+          '''
+          save_credentials method saves credentials objects into credentials_list
+          '''
+
+          Credentials.credentials_list.append(self)
+
+     def delete_credentials(self):
+
+        '''
+        delete_credentials method deletes saved credentials from the credentials_list
+        '''
+
+        Credentials.credentials_list.remove(self)

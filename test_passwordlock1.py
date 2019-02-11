@@ -1,6 +1,7 @@
 import unittest
-from passwordlock import User
 from passwordlock_1 import Credentials
+
+# from passwordlock import User
 
 class TestCredentials(unittest.TestCase):
   '''
@@ -30,7 +31,7 @@ class TestCredentials(unittest.TestCase):
         test_save_credentials test case to test if the credentials object is saved into
          the contact list
         '''
-        self.new_credentials.test_save_credentials() 
+        self.new_credentials.save_credentials() 
         self.assertEqual(len(Credentials.credentials_list),1)
 
   def tearDown(self):
@@ -49,6 +50,16 @@ class TestCredentials(unittest.TestCase):
 
             self.new_credentials.delete_credentials()
             self.assertEqual(len(Credentials.credentials_list),1)
+
+  def test_save_multiple_contact(self):
+            '''
+            test_save_multiple_credentials to check if we can save multiple credentials
+            objects to our credentials_list
+            '''
+            self.new_credentials.save_credentials()
+            test_credentials = Credentials("Test","user","test@user") 
+            test_credentials.save_credentials()
+            self.assertEqual(len(Credentials.credentials_list),2)
 
 
 if __name__ == '__main__':
