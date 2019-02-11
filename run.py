@@ -22,6 +22,12 @@ def delet_user(user):
     '''
     user.delete_user()
 
+def find_user(username):
+    '''
+    Function that finds a user by a username and return thet user
+    '''
+    return User.find_by_username(username)
+
 def create_credentials(accountname,username,pw):
     '''
     Function to create new credentials
@@ -53,31 +59,85 @@ def display():
     ''' 
     return Credentials.display_credentials()
 
+def check_existing_user(username):
+   '''
+   Function that checks if user exists with that user name and return a Boolean 
+   '''
+   return User.user_exist(username)
+
+def check_existing_credentials(accountname):
+   '''
+   Function that checks if credentials existwith account name and return a Boolean
+   '''
+   return Credentials.credentials_exist(accountname)
+
 def main():
   print("Welcome to password locker")
-  print("\n")
-  print("Use the following short codes:ca -Create account ,li -Login")
-  short_code1=input().lower()
-  if short_code1=='ca':
-     print('New account')
-     print("-"*10)
 
-     print("Full name")
-     names=input()
+  while True:
+    print("\n")
+    print("Use the following short codes:ca -Create account ,li -Login")
+    short_code1=input().lower()
+    if short_code1=='ca':
+       print('New account')
+       print("-"*10)
 
-     print("Login username")
-     username=input()
+       print("Full name")
+       names=input()
 
-     print("E-mail")
-     email=input()
+       print("Login username")
+       username=input()
 
-     print("Create password")
-     user_password=input()
+       print("E-mail")
+       email=input()
 
-     save_user(create_user(names,username,email,user_password))
-     print('\n')
-     print(f"New account {username} created")
-     print('\n')
+       print("Create password")
+       user_password=input()
+
+       save_user(create_user(names,username,email,user_password))
+       print('\n')
+       print(f"New account {username} created")
+       print('\n')
+    elif short_code1=='li':
+       print("Enter your username")
+       login_username=input()
+
+       print("Enter password")
+       login_password=input()
+
+       if check_existing_user(login_username):
+           search_user=find_user(login_username)
+           if search_user.username==login_username and search_user.password==login_password:
+             print("Login successful")
+             print('\n')
+             print("Use the following short codes to navigate your account: ac -add credentials ,fc -find credentials , dc -display credentials")
+             short_code2=input()
+             if short_code2=='ac':
+                print("New credentials")
+                print("-"*13)
+
+                print("Enter account name/Application name")
+                accountname1=input()
+
+                print("Enter username")
+                username1=input()
+
+                print("Enter password ")
+                password1=input()
+
+                save_credentials(create_credentials(accountname1,username1,password1))
+                print('\n')
+                print(f"{accountname1.capitalize()} credentials saved")
+                print('\n')
+
+              
+
+           else :
+             print("Wrong username or password")
+       else:
+           print("Account doesn't exist,You have to create an account first")
+       
+
       
 
 
