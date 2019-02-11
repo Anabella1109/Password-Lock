@@ -72,7 +72,7 @@ def check_existing_credentials(accountname):
    '''
    return Credentials.credentials_exist(accountname)
 
-def pw_generator(size,chars=string+ string.digits):
+def pw_generator(size,chars=string.ascii_letters+ string.digits):
     '''
     Function to generate password for the user
     '''
@@ -83,7 +83,7 @@ def main():
 
   while True:
     print("\n")
-    print("Use the following short codes:ca -Create account ,li -Login")
+    print("Use the following short codes:ca -Create account ,li -Login , dl -delete user account")
     short_code1=input().lower()
     if short_code1=='ca':
        print('New account')
@@ -106,6 +106,7 @@ def main():
        print(f"New account {username} created")
        print('\n')
     elif short_code1=='li':
+     while True:
        print("Enter your username")
        login_username=input()
 
@@ -118,7 +119,7 @@ def main():
              print("Login successful")
              print('\n')
              print("Use the following short codes to navigate your account: ac -add credentials ,fc -find credentials , dc -display credentials,del -delete credentials")
-             short_code2=input()
+             short_code2=input().lower()
              if short_code2=='ac':
                 print("New credentials")
                 print("-"*13)
@@ -130,14 +131,23 @@ def main():
                 username1=input()
 
                 print("Use cop to create your own password ,gpg to get password generated for you")
-                password1=input()
+                short_code3=input().lower()
+                if short_code3=='cop':
+                  password1=input()
+                elif short_code3=='gpg':
+                  print("Enter integer size you want password to be(no letters)")
+                  size=int(input())
+                  password1=pw_generator(size)
+
+                else:
+                  print("Please use the provided short codes")
 
                 save_credentials(create_credentials(accountname1,username1,password1))
                 print('\n')
                 print(f"{accountname1.capitalize()} credentials saved")
                 print('\n')
              elif short_code2=='fc':
-                print("Enter account name/applicattin name to find")
+                print("Enter account name/application name to find")
                 accountname=input()
 
                 if check_existing_credentials(accountname):
@@ -185,7 +195,23 @@ def main():
              print("Wrong username or password")
        else:
            print("Account doesn't exist,You have to create an account first")
-       
+    elif short_code1=='dl':
+        print("Enter username of user account you want to delete")
+        username_to_delete=input()
+        if check_existing_user(username_to_delete):
+           search_user=find_user(username_to_delete)
+              
+           delet_user(search_user)
+           print('\n')
+
+           print(f"{username_to_delete}    is deleted")
+
+           
+        else:
+              print('\n')
+              print("That user does not exist")
+              print('\n')
+          
 
       
 
