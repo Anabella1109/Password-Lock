@@ -51,7 +51,7 @@ class TestCredentials(unittest.TestCase):
             self.new_credentials.delete_credentials()
             self.assertEqual(len(Credentials.credentials_list),1)
 
-  def test_save_multiple_contact(self):
+  def test_save_multiple_credentials(self):
             '''
             test_save_multiple_credentials to check if we can save multiple credentials
             objects to our credentials_list
@@ -61,6 +61,37 @@ class TestCredentials(unittest.TestCase):
             test_credentials.save_credentials()
             self.assertEqual(len(Credentials.credentials_list),2)
 
+  def test_find_credentials_by_accountname(self):
+        '''
+        test to check if we can find credentials by account name and display information
+        '''
 
+        self.new_credentials.save_credentials()
+        test_credentials = Credentials("Test","user","test@user")
+        test_credentials.save_credentials()
+
+        found_credentials = Credentials.find_by_accountname("Test")
+
+        self.assertEqual(found_credentials.password,test_credentials.password)
+
+  def test_credentials_exists(self):
+        '''
+        test to check if we can return a Boolean  if we cannot find the credentials.
+        '''
+
+        self.new_credentials.save_credentials()
+        test_credentials = Credentials("Test","user","test@user")
+        test_credentials.save_credentials()
+
+        credentials_exists = Credentials.credentials_exist("Test")
+
+        self.assertTrue(credentials_exists)
+
+  def test_display_all_credentials(self):
+        '''
+        method that returns a list of all credentiasl saved
+        '''
+
+        self.assertEqual(Credentials.display_credentials(),Credentials.credentials_list)
 if __name__ == '__main__':
     unittest.main()
