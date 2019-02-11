@@ -133,6 +133,7 @@ def main():
                 
                 short_code3=input().lower()
                 if short_code3=='cop':
+                  print("Enter password")
                   password1=input()
                 elif short_code3=='gpg':
                   print("Enter integer size you want password to be(no letters)")
